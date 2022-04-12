@@ -12,10 +12,10 @@ function List({ match }) {
     }, []);
 
     function deleteRecado(id) {
-        setRecados(recados.map(x => {
-            if (x.id === id) { x.isDeleting = true; }
-            return x;
-        }));
+        //setRecados(recados.map(x => {
+        //    if (x.id === id) { x.isDeleting = true; }
+        //    return x;
+        //}));
         recadoService.delete(id).then(() => {
             setRecados(recados => recados.filter(x => x.id !== id));
         });
