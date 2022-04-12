@@ -30,6 +30,7 @@ function AddEdit({ history, match }) {
     }
 
     function createRecado(data) {
+        data.time = new Date()
         return recadoService.create(data)
             .then(() => {
                 alertService.success('Recado added', { keepAfterRouteChange: true });
@@ -39,6 +40,7 @@ function AddEdit({ history, match }) {
     }
 
     function updateRecado(id, data) {
+        data.time = new Date()
         return recadoService.update(id, data)
             .then(() => {
                 alertService.success('Recado updated', { keepAfterRouteChange: true });
