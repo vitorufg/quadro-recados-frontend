@@ -28,24 +28,22 @@ function List({ match }) {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th style={{ width: '30%' }}>Name</th>
-                        <th style={{ width: '30%' }}>Email</th>
-                        <th style={{ width: '30%' }}>Role</th>
+                        <th style={{ width: '30%' }}>Autor</th>
+                        <th style={{ width: '60%' }}>Recado</th>
                         <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
                 <tbody>
                     {recados && recados.map(recado =>
                         <tr key={recado.id}>
-                            <td>{recado.title} {recado.firstName} {recado.lastName}</td>
-                            <td>{recado.email}</td>
-                            <td>{recado.role}</td>
+                            <td>{recado.autor}</td>
+                            <td>{recado.recado}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
-                                <Link to={`${path}/edit/${recado.id}`} className="btn btn-sm btn-primary mr-1">Edit</Link>
+                                <Link to={`${path}/edit/${recado.id}`} className="btn btn-sm btn-primary mr-1">Editar</Link>
                                 <button onClick={() => deleteRecado(recado.id)} className="btn btn-sm btn-danger btn-delete-recado" disabled={recado.isDeleting}>
                                     {recado.isDeleting 
                                         ? <span className="spinner-border spinner-border-sm"></span>
-                                        : <span>Delete</span>
+                                        : <span>Deletar</span>
                                     }
                                 </button>
                             </td>
