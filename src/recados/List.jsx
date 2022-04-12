@@ -12,10 +12,6 @@ function List({ match }) {
     }, []);
 
     function deleteRecado(id) {
-        //setRecados(recados.map(x => {
-        //    if (x.id === id) { x.isDeleting = true; }
-        //    return x;
-        //}));
         recadoService.delete(id).then(() => {
             setRecados(recados => recados.filter(x => x.id !== id));
         });
@@ -42,11 +38,8 @@ function List({ match }) {
                             <td>{recado.data}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link to={`${path}/edit/${recado.id}`} className="btn btn-sm btn-primary mr-1">Editar</Link>
-                                <button onClick={() => deleteRecado(recado.id)} className="btn btn-sm btn-danger btn-delete-recado" disabled={recado.isDeleting}>
-                                    {recado.isDeleting 
-                                        ? <span className="spinner-border spinner-border-sm"></span>
-                                        : <span>Deletar</span>
-                                    }
+                                <button onClick={() => deleteRecado(recado.id)} className="btn btn-sm btn-danger btn-delete-recado">
+                                    <span>Deletar</span>
                                 </button>
                             </td>
                         </tr> 
