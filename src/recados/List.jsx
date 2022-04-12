@@ -28,8 +28,9 @@ function List({ match }) {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th style={{ width: '30%' }}>Autor</th>
-                        <th style={{ width: '60%' }}>Recado</th>
+                        <th style={{ width: '20%' }}>Autor</th>
+                        <th style={{ width: '50%' }}>Recado</th>
+                        <th style={{ width: '20%' }}>Data</th>
                         <th style={{ width: '10%' }}></th>
                     </tr>
                 </thead>
@@ -38,6 +39,7 @@ function List({ match }) {
                         <tr key={recado.id}>
                             <td>{recado.autor}</td>
                             <td>{recado.recado}</td>
+                            <td>{recado.data}</td>
                             <td style={{ whiteSpace: 'nowrap' }}>
                                 <Link to={`${path}/edit/${recado.id}`} className="btn btn-sm btn-primary mr-1">Editar</Link>
                                 <button onClick={() => deleteRecado(recado.id)} className="btn btn-sm btn-danger btn-delete-recado" disabled={recado.isDeleting}>
