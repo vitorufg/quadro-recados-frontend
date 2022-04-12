@@ -77,9 +77,9 @@ function AddEdit({ history, match }) {
             <div className="form-group">
                 <button type="submit" disabled={formState.isSubmitting} className="btn btn-primary">
                     {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                    Save
+                    Salvar
                 </button>
-                <Link to={isAddMode ? '.' : '..'} className="btn btn-link">Cancel</Link>
+                <Link to={isAddMode ? '.' : '..'} className="btn btn-link">Cancelar</Link>
             </div>
         </form>
     );
