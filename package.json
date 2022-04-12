@@ -10,7 +10,8 @@
         "react-hook-form": "^6.9.2",
         "react-router-dom": "^5.1.2",
         "rxjs": "^6.5.5",
-        "yup": "^0.29.3"
+        "yup": "^0.29.3",
+        "react-scripts": "latest"
     },
     "scripts": {
         "start": "react-scripts start",
