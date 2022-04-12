@@ -17,7 +17,7 @@ function List({ match }) {
             return x;
         }));
         recadoService.delete(id).then(() => {
-            setRecados(recados => recados.filter(x => x.id !== id).reverse());
+            setRecados(recados => recados.reverse().filter(x => x.id !== id));
         });
     }
 
