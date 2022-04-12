@@ -12,12 +12,12 @@ function List({ match }) {
     }, []);
 
     function deleteRecado(id) {
-        setRecados(recados.reverse().map(x => {
+        setRecados(recados.map(x => {
             if (x.id === id) { x.isDeleting = true; }
             return x;
         }));
         recadoService.delete(id).then(() => {
-            setRecados(recados => recados.reverse().filter(x => x.id !== id));
+            setRecados(recados => recados.filter(x => x.id !== id));
         });
     }
 
