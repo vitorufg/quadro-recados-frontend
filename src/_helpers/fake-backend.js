@@ -1,14 +1,14 @@
 import { Role } from './'
 
 export function configureFakeBackend() {
-    // array in local storage for user records
-    let users = JSON.parse(localStorage.getItem('users')) || [{ 
+    // array in local storage for recado records
+    let recados = JSON.parse(localStorage.getItem('recados')) || [{ 
         id: 1,
         title: 'Mr',
         firstName: 'Joe',
         lastName: 'Bloggs',
         email: 'joe@bloggs.com',
-        role: Role.User,
+        role: Role.Recado,
         password: 'joe123'
     }];
 
@@ -22,16 +22,16 @@ export function configureFakeBackend() {
             function handleRoute() {
                 const { method } = opts;
                 switch (true) {
-                    case url.endsWith('/users') && method === 'GET':
-                        return getUsers();
-                    case url.match(/\/users\/\d+$/) && method === 'GET':
-                        return getUserById();
-                    case url.endsWith('/users') && method === 'POST':
-                        return createUser();
-                    case url.match(/\/users\/\d+$/) && method === 'PUT':
-                        return updateUser();
-                    case url.match(/\/users\/\d+$/) && method === 'DELETE':
-                        return deleteUser();
+                    case url.endsWith('/recados') && method === 'GET':
+                        return getRecados();
+                    case url.match(/\/recados\/\d+$/) && method === 'GET':
+                        return getRecadoById();
+                    case url.endsWith('/recados') && method === 'POST':
+                        return createRecado();
+                    case url.match(/\/recados\/\d+$/) && method === 'PUT':
+                        return updateRecado();
+                    case url.match(/\/recados\/\d+$/) && method === 'DELETE':
+                        return deleteRecado();
                     default:
                         // pass through any requests not handled above
                         return realFetch(url, opts)
@@ -42,35 +42,35 @@ export function configureFakeBackend() {
 
             // route functions
 
-            function getUsers() {
-                return ok(users);
+            function getRecados() {
+                return ok(recados);
             }
 
-            function getUserById() {
-                let user = users.find(x => x.id === idFromUrl());
-                return ok(user);
+            function getRecadoById() {
+                let recado = recados.find(x => x.id === idFromUrl());
+                return ok(recado);
             }
     
-            function createUser() {
-                const user = body();
+            function createRecado() {
+                const recado = body();
 
-                if (users.find(x => x.email === user.email)) {
-                    return error(`User with the email ${user.email} already exists`);
+                if (recados.find(x => x.email === recado.email)) {
+                    return error(`Recado with the email ${recado.email} already exists`);
                 }
 
-                // assign user id and a few other properties then save
-                user.id = newUserId();
-                user.dateCreated = new Date().toISOString();
-                delete user.confirmPassword;
-                users.push(user);
-                localStorage.setItem('users', JSON.stringify(users));
+                // assign recado id and a few other properties then save
+                recado.id = newRecadoId();
+                recado.dateCreated = new Date().toISOString();
+                delete recado.confirmPassword;
+                recados.push(recado);
+                localStorage.setItem('recados', JSON.stringify(recados));
 
                 return ok();
             }
     
-            function updateUser() {
+            function updateRecado() {
                 let params = body();
-                let user = users.find(x => x.id === idFromUrl());
+                let recado = recados.find(x => x.id === idFromUrl());
 
                 // only update password if included
                 if (!params.password) {
@@ -79,16 +79,16 @@ export function configureFakeBackend() {
                 // don't save confirm password
                 delete params.confirmPassword;
 
-                // update and save user
-                Object.assign(user, params);
-                localStorage.setItem('users', JSON.stringify(users));
+                // update and save recado
+                Object.assign(recado, params);
+                localStorage.setItem('recados', JSON.stringify(recados));
 
                 return ok();
             }
     
-            function deleteUser() {
-                users = users.filter(x => x.id !== idFromUrl());
-                localStorage.setItem('users', JSON.stringify(users));
+            function deleteRecado() {
+                recados = recados.filter(x => x.id !== idFromUrl());
+                localStorage.setItem('recados', JSON.stringify(recados));
 
                 return ok();
             }
@@ -112,8 +112,8 @@ export function configureFakeBackend() {
                 return opts.body && JSON.parse(opts.body);    
             }
 
-            function newUserId() {
-                return users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+            function newRecadoId() {
+                return recados.length ? Math.max(...recados.map(x => x.id)) + 1 : 1;
             }
         });
     }

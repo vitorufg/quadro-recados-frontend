@@ -1,8 +1,8 @@
 import { fetchWrapper } from '../_helpers';
 
-const baseUrl = '/users';
+const baseUrl = '/recados';
 
-export const userService = {
+export const recadoService = {
     getAll,
     getById,
     create,

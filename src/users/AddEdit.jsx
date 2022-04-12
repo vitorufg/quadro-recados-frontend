@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { userService, alertService } from '../_services';
+import { recadoService, alertService } from '../_services';
 
 function AddEdit({ history, match }) {
     const { id } = match.params;
@@ -42,23 +42,23 @@ function AddEdit({ history, match }) {
 
     function onSubmit(data) {
         return isAddMode
-            ? createUser(data)
-            : updateUser(id, data);
+            ? createRecado(data)
+            : updateRecado(id, data);
     }
 
-    function createUser(data) {
-        return userService.create(data)
+    function createRecado(data) {
+        return recadoService.create(data)
             .then(() => {
-                alertService.success('User added', { keepAfterRouteChange: true });
+                alertService.success('Recado added', { keepAfterRouteChange: true });
                 history.push('.');
             })
             .catch(alertService.error);
     }
 
-    function updateUser(id, data) {
-        return userService.update(id, data)
+    function updateRecado(id, data) {
+        return recadoService.update(id, data)
             .then(() => {
-                alertService.success('User updated', { keepAfterRouteChange: true });
+                alertService.success('Recado updated', { keepAfterRouteChange: true });
                 history.push('..');
             })
             .catch(alertService.error);
@@ -66,17 +66,17 @@ function AddEdit({ history, match }) {
 
     useEffect(() => {
         if (!isAddMode) {
-            // get user and set form fields
-            userService.getById(id).then(user => {
+            // get recado and set form fields
+            recadoService.getById(id).then(recado => {
                 const fields = ['title', 'firstName', 'lastName', 'email', 'role'];
-                fields.forEach(field => setValue(field, user[field]));
+                fields.forEach(field => setValue(field, recado[field]));
             });
         }
     }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-            <h1>{isAddMode ? 'Add User' : 'Edit User'}</h1>
+            <h1>{isAddMode ? 'Add Recado' : 'Edit Recado'}</h1>
             <div className="form-row">
                 <div className="form-group col">
                     <label>Title</label>
@@ -110,7 +110,7 @@ function AddEdit({ history, match }) {
                     <label>Role</label>
                     <select name="role" ref={register} className={`form-control ${errors.role ? 'is-invalid' : ''}`}>
                         <option value=""></option>
-                        <option value="User">User</option>
+                        <option value="Recado">Recado</option>
                         <option value="Admin">Admin</option>
                     </select>
                     <div className="invalid-feedback">{errors.role?.message}</div>
