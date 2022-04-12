@@ -8,16 +8,16 @@ function List({ match }) {
     const [recados, setRecados] = useState(null);
 
     useEffect(() => {
-        recadoService.getAll().then(x => setRecados(x));
+        recadoService.getAll().then(x => setRecados(x.reverse()));
     }, []);
 
     function deleteRecado(id) {
-        setRecados(recados.map(x => {
+        setRecados(recados.reverse().map(x => {
             if (x.id === id) { x.isDeleting = true; }
             return x;
         }));
         recadoService.delete(id).then(() => {
-            setRecados(recados => recados.filter(x => x.id !== id));
+            setRecados(recados => recados.filter(x => x.id !== id).reverse());
         });
     }
 
@@ -35,7 +35,7 @@ function List({ match }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {recados && recados.reverse().map(recado =>
+                    {recados && recados.map(recado =>
                         <tr key={recado.id}>
                             <td>{recado.autor}</td>
                             <td>{recado.recado}</td>
