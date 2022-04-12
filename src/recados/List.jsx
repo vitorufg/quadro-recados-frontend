@@ -59,7 +59,7 @@ function List({ match }) {
                     {recados && !recados.length &&
                         <tr>
                             <td colSpan="4" className="text-center">
-                                <div className="p-2">No Recados To Display</div>
+                                <div className="p-2">Nenhum recado para exibir</div>
                             </td>
                         </tr>
                     }
