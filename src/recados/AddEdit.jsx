@@ -79,7 +79,7 @@ function AddEdit({ history, match }) {
                     {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                     Salvar
                 </button>
-                <Link to={isAddMode ? '.' : '..'} className="btn btn-link">Cancelar</Link>
+                <Link to={isAddMode ? '.' :  '..'} className="btn btn-link">Cancelar</Link>
             </div>
         </form>
     );
