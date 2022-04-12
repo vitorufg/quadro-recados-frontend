@@ -47,7 +47,7 @@ function List({ match }) {
                                     }
                                 </button>
                             </td>
-                        </tr>
+                        </tr> 
                     )}
                     {!recados &&
                         <tr>
