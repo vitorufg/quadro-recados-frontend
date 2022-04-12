@@ -8,7 +8,7 @@ function List({ match }) {
     const [recados, setRecados] = useState(null);
 
     useEffect(() => {
-        recadoService.getAll().then(x => setRecados(x));
+        recadoService.getAll().then(x => setRecados(x.reverse()));
     }, []);
 
     function deleteRecado(id) {
