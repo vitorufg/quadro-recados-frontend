@@ -1,6 +1,6 @@
 import { fetchWrapper } from '../_helpers';
 
-const baseUrl = '/recados';
+const baseUrl = 'https://quadro-recados-backend.herokuapp.com/recados';
 
 export const recadoService = {
     getAll,
